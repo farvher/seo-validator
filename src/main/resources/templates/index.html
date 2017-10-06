@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="head :: header">
+</head>
+<body>
+
+	<div class="container">
+
+		<h1>validacion de url</h1>
+		<div>
+			<form th:action="@{/get-sitemaps}" method="post">
+				<div class="form-group">
+					<label for="urlsitemap">Sitemap principal url</label> <input
+						type="url" required="required" class="form-control"
+						id="urlsitemap" name="urlSitemap" placeholder="Enter sitemap">
+				</div>
+
+
+				<input type="submit" class="btn btn-primary" />
+			</form>
+		</div>
+		<div th:if="${sitemaps!=null}" class="list-group">
+			<a class="list-group-item" th:each="site : ${sitemaps.sitemap}"
+				th:text="${site.loc}" th:href="@{/get-urls/} + ${site.loc} + |/view|"></a>
+		</div>
+
+		<div th:if="${result !=null}" th:text="${result}"></div>
+
+	</div>
+	
+	<div th:replace="head :: jquery"></div>
+</body>
+</html>

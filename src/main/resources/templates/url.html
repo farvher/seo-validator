@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="head :: header">
+</head>
+<body>
+
+	<div class="container">
+
+		<h1>Urls encontradas</h1>
+		<label th:text="${sitemap}" class="label label-primary"> </label>
+		<button class="valid-all btn btn-sm">valid all</button>
+
+		<div th:if="${urlset!=null}" class="list-group">
+			<div class="list-group-item" th:each="url , i : ${urlset.url}">
+			<a th:text="${i.count} + ${url.loc}"></a>
+			<button th:id="${url.loc.trim()}" class="btn btn-sm valid" >validar</button>
+				
+				 </div>
+		</div>
+
+		<div th:if="${result !=null}" th:text="${result}"></div>
+	</div>
+	
+	
+	
+	<div th:replace="head :: jquery"></div>
+</body>
+</html>
