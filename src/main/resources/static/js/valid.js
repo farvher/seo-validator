@@ -25,6 +25,7 @@ $(document).ready(function(){
 			method : "post",
 			success : function(data, status) {
 				$(div).addClass(data ? "btn-danger":"btn-success");
+				$(div).html(data ? "Sin resultados":"Con resultados");
 			},
 			error : function(error) {
 				alert("error url: "+ uri);
