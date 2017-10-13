@@ -30,8 +30,8 @@ public class ValidatorController {
 	private final static String INDEX = "index";
 
 	private static final String URL_VIEW = "url";
-	
-	private static final String NO_RESULTS ="No tenemos inmuebles que coincidan con su";
+
+	private static final String NO_RESULTS = "No tenemos inmuebles que coincidan con su";
 
 	@GetMapping(value = "/")
 	public String index() {
@@ -70,7 +70,7 @@ public class ValidatorController {
 		}
 		return URL_VIEW;
 	}
-	
+
 	@PostMapping("/process")
 	@ResponseBody
 	public boolean processUrl(@RequestParam String url) {
@@ -79,13 +79,12 @@ public class ValidatorController {
 			RestTemplate restTemplate = new RestTemplate();
 			String response = restTemplate.getForObject(uri, String.class);
 			return response.contains(NO_RESULTS);
-		} catch (URISyntaxException e) {
+		} catch (Exception e) {
+			System.out.print("error url:" + url);
 		}
-		
+
 		return false;
 	}
-
-	
 
 	@GetMapping("/test")
 	public String test(Model model) {
@@ -121,13 +120,13 @@ public class ValidatorController {
 
 		for (int i = 0; i < 10; i++) {
 
-			Url ur  = new Url();
+			Url ur = new Url();
 			ur.setChangefreq("daily");
 			ur.setPriority("0.8");
 			ur.setLastmod("2017/09/10");
 			ur.setLoc("www.prueba.com/" + i);
 			urls.add(ur);
-			
+
 		}
 
 		urlset.setUrl(urls);

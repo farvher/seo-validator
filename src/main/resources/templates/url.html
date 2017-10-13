@@ -12,7 +12,7 @@
 
 		<div th:if="${urlset!=null}" class="list-group">
 			<div class="list-group-item" th:each="url , i : ${urlset.url}">
-			<a th:text="${i.count} + ${url.loc}"></a>
+			<a th:text="${i.count} + ${url.loc}" th:href="${url.loc}" target="_blank"></a>
 			<button th:id="${url.loc.trim()}" class="btn btn-sm valid" >validar</button>
 				
 				 </div>
