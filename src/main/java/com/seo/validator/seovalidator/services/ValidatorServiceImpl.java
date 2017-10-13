@@ -50,4 +50,19 @@ public class ValidatorServiceImpl implements ValidatorService {
 		return null;
 	}
 
+	@Override
+	public String getHtmlContent(String url) {
+		try {
+			Document document = Jsoup.connect("http://"+url).get();
+			document.outputSettings().prettyPrint(false);
+			document.outputSettings().charset("ASCII");
+			return document.html();
+		} catch (IOException io) {
+			logger.error("io error: ", io);
+		} catch (Exception ex) {
+			logger.error("error: ", ex);
+		}
+		return null;
+	}
+
 }

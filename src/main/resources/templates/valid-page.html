@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="head :: header">
+</head>
+<body>
+
+	<div class="container">
+
+		<h1>Validar pagina</h1>
+		<div>
+			<form th:action="@{/valid-page}" method="post">
+				<div class="form-group">
+					<label for="url">Ver pagina :</label> <input type="text"
+						required="required" class="form-control" id="url" name="url"
+						placeholder="Enter url">
+				</div>
+
+				<input type="submit" class="btn btn-primary" />
+			</form>
+		</div>
+
+		<div th:if="${content!=null}" th:text="${content}"></div>
+
+
+
+
+	</div>
+
+	<div th:replace="head :: jquery"></div>
+</body>
+</html>

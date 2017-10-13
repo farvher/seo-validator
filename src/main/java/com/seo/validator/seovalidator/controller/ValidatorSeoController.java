@@ -10,6 +10,8 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,7 +27,9 @@ import com.seo.validator.seovalidator.dto.comb.Url;
 import com.seo.validator.seovalidator.dto.comb.Urlset;
 
 @Controller
-public class ValidatorController {
+public class ValidatorSeoController {
+
+	private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
 	private final static String INDEX = "index";
 

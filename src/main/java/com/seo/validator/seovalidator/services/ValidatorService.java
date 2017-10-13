@@ -9,5 +9,7 @@ public interface ValidatorService {
 	Boolean validateSpecial(String content, String text);
 	
 	ItemValidDto validateUrl(String url);
+	
+	String getHtmlContent(String url);
 
 }
