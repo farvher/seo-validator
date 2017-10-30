@@ -21,13 +21,45 @@
 		</div>
 		<div th:if="${sitemaps!=null}" class="list-group">
 			<a class="list-group-item" th:each="site : ${sitemaps.sitemap}"
-				th:text="${site.loc}" th:href="@{/get-urls/} + ${site.loc} + |/view|"></a>
+				th:text="${site.loc}"
+				th:href="@{/get-urls/} + ${site.loc} + |/view|"></a>
 		</div>
 
 		<div th:if="${result !=null}" th:text="${result}"></div>
 
+
+		<div>
+			<br />
+			<h2>Urls Manuales</h2>
+			<form action="/manual-process" method="post">
+				<div class="form-group">
+					<label for="ambiente">Ambiente</label> <select name="ambiente" th:selected="${ambiente!=null? ambiente : 'http://localhost:8080/'}"
+						class="form-control" id="ambiente">
+						<option value="http://localhost:18080/metrocuadrado-results/">localhost</option>
+						<option value="http://ci.metrocuadrado.com/metrocuadrado-results/">ci</option>
+						<option value="http://staging.metrocuadrado.com/metrocuadrado-results/">staging</option>
+						<option value="http://www.metrocuadrado.com/">www</option>
+					</select>
+				</div>
+				<div class="form-group">
+					<label for="urls">Listado Urls</label>
+					<textarea class="form-control" id="urls" name="urls" rows="3" th:text="${urls!=null? urls : ''}"></textarea>
+					<input type="submit" value="Enviar" class="btn btn-primary" />
+				</div>
+
+			</form>
+
+			<div th:if="${urlsManuales!=null}">
+				<ul class="list-group">
+					<li th:each="url : ${urlsManuales}" th:text="${url}"
+						th:class="${url.contains('OK')? 'list-group-item list-group-item-success': ' list-group-item list-group-item-warning' }"></li>
+				</ul>
+			</div>
+
+		</div>
+
 	</div>
-	
+
 	<div th:replace="head :: jquery"></div>
 </body>
 </html>

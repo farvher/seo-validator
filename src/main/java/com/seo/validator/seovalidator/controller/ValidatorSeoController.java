@@ -90,6 +90,30 @@ public class ValidatorSeoController {
 		return false;
 	}
 
+	@PostMapping("/manual-process")
+	public String processManualUrl(@RequestParam String ambiente, @RequestParam String urls, Model m) {
+		List<String> procesadas = new ArrayList<>();
+		for (String url : urls.split(",|\r\n")) {
+			try {
+				url = url.startsWith("/")?url.substring(1):url;
+				URI uri = new URI(ambiente+url.trim());
+				RestTemplate restTemplate = new RestTemplate();
+				String response = restTemplate.getForObject(uri, String.class);
+				boolean sinResultados = response.contains(NO_RESULTS);
+				procesadas.add(url + (sinResultados ? " Sin resultados"
+						: " OK"));
+
+			} catch (Exception e) {
+				System.out.print("error url:" + url);
+				procesadas.add(url + " Exception "+e.getMessage() );
+			}
+		}
+		m.addAttribute("urlsManuales", procesadas);
+		m.addAttribute("ambiente",ambiente);
+		m.addAttribute("urls",urls);
+		return INDEX;
+	}
+
 	@GetMapping("/test")
 	public String test(Model model) {
 		Sitemapindex sitemapindex = new Sitemapindex();
