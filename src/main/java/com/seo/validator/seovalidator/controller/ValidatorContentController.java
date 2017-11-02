@@ -29,7 +29,7 @@ public class ValidatorContentController {
 		return VALID_PAGE_VIEW;
 	}
 
-	@PostMapping
+	@PostMapping("/html-content")
 	public String validatePage(@RequestParam String url,RedirectAttributes ra, Model m) {
 		ra.addFlashAttribute("content", validatorService.getHtmlContent(url));
 		return REDIRECT + "/valid-page";
