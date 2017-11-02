@@ -24,7 +24,7 @@ public class ValidatorContentController {
 	
 	private static final String REDIRECT ="redirect:";
 
-	@GetMapping("/valid-page")
+	
 	public String viewValidatePage(Model m) {
 		return VALID_PAGE_VIEW;
 	}
